@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     name: Create Release
+    permissions:
+      # write permission is required to create a github release
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
