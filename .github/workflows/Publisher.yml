@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   
 jobs:
-  name: Publisher
-  runs-on: ubuntu-latest
-  steps:
-    - run: echo ${{ needs.ReleaseDrafter.outputs.upload_url }}
+  build:
+    name: Publisher
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ needs.ReleaseDrafter.outputs.upload_url }}
