@@ -1,4 +1,4 @@
-name: Release Drafter
+name: ReleaseDrafter
 
 on:
   push:
@@ -32,7 +32,8 @@ jobs:
       #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
 
       # Drafts your next Release notes as Pull Requests are merged into "master"
-      - uses: release-drafter/release-drafter@v5
+      - name: drafter
+        uses: release-drafter/release-drafter@v5
    
         # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
         # with:
@@ -41,4 +42,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with: 
-          commitish: main
+          commitish: main 
