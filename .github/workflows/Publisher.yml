@@ -14,13 +14,13 @@ jobs:
     needs: prepare-notes
     steps:
       - name: drafter
-          id: drafter
-          uses: release-drafter/release-drafter@v5
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            commitish:
-              main
+        id: drafter
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commitish:
+            main
 
       - name: Checkout
         uses: actions/checkout@v3
