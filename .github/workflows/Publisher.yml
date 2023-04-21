@@ -38,9 +38,9 @@ jobs:
           GITHUB_TOKEN:
             ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{needs.prepare-notes.outputs.RELEASE_ID}}
-          release_name: Release ${{needs.prepare-notes.outputs.RELEASE_ID}}
-          body: ${{needs.prepare-notes.outputs.RELEASE_BODY}}
+          tag_name: ${{steps.drafter.outputs.id}}
+          release_name: Release ${{ github.ref }}
+          body: ${{steps.drafter.outputs.body}}
           draft: false
           prerelease: false
 
