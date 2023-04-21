@@ -13,9 +13,10 @@ jobs:
     steps:
       - name: Get latest version
         id: latestVersion
-        uses: gregziegan/fetch-latest-release@v2.0.0
+        uses: pozetroninc/github-action-get-latest-release@master
         with:
           github_token: ${{ github.token }}
+          repository: ${{ github.repository }}
 
       - name: set outputs
         run: |
