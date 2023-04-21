@@ -21,23 +21,25 @@ jobs:
           commitish:
             main
 
-      - name: Checkout
-        uses: actions/checkout@v3
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Release
+#        uses: actions/create-release@v1
+#        env:
+#          GITHUB_TOKEN:
+#            ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          tag_name: ${{ github.ref }}
+#          release_name: Release ${{ github.ref }}
+#          body: ${{steps.drafter.outputs.body}}
+#          draft: false
+#          prerelease: false
 
-      - name: Release
-        uses: actions/create-release@v1
+      - name: Edit Release
+        uses: irongut/EditRelease@v1.2.0
         env:
-          GITHUB_TOKEN:
-            ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: ${{steps.drafter.outputs.body}}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          id: ${{ steps.drafter.outputs.body }}
+          name: Release ${{ github.ref }}
           draft: false
-          prerelease: false
-
-      - name: Delete drafts
-        uses: hugo19941994/delete-draft-releases@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
