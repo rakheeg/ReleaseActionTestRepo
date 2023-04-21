@@ -25,6 +25,8 @@ jobs:
           commitish: main
 
   publish:
+    permissions:
+      contents: write
     name: Publisher
     runs-on: ubuntu-latest
     needs: update_release_draft
