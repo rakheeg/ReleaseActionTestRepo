@@ -3,11 +3,8 @@ name: Publish Release
 on:
   workflow_dispatch:
 
-env:
-  temp_var: "body of the release"
-
 jobs:
-  update_release_draft:
+  prepare-notes:
     permissions:
       contents: write
       pull-requests: write
@@ -41,9 +38,18 @@ jobs:
           GITHUB_TOKEN:
             ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{needs.update_release_draft.outputs.RELEASE_ID}}
-          release_name: Release ${{needs.update_release_draft.outputs.RELEASE_ID}}
-          body: echo "${{needs.update_release_draft.outputs.RELEASE_BODY}}"
+          tag_name: ${{needs.prepare-notes.outputs.RELEASE_ID}}
+          release_name: Release ${{needs.prepare-notes.outputs.RELEASE_ID}}
+          body: ${{needs.prepare-notes.outputs.RELEASE_BODY}}
           draft: false
           prerelease: false
+
+  deleteDraft:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete drafts
+        uses: hugo19941994/delete-draft-releases@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
