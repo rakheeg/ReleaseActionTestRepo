@@ -45,18 +45,19 @@ jobs:
         with: 
           commitish: main 
       - name: saveOutput
-        run : |
+        run: |
           echo "${{ steps.drafter.outputs.id }}"
           echo "${{ steps.drafter.outputs.name }}"
           echo "${{ steps.drafter.outputs.tag_name }}"
           echo "${{ steps.drafter.outputs.body }}"
           echo "${{ steps.drafter.outputs.html_url }}"
           echo "${{ steps.drafter.outputs.upload_url }}"
-          env:
-            RELEASE_ID: ${{ steps.drafter.outputs.id }}
-            RELEASE_NAME: ${{ steps.drafter.outputs.name }}
-            RELEASE_TAG_NAME: ${{ steps.drafter.outputs.tag_name }}
-            RELEASE_BODY: ${{ steps.drafter.outputs.body }}
-            RELEASE_HTML_URL: ${{ steps.drafter.outputs.html_url }}
-            RELEASE_UPLOAD_URL: ${{ steps.drafter.outputs.upload_url }}
-        
+          
+        env:
+          RELEASE_ID: ${{ steps.drafter.outputs.id }}
+          RELEASE_NAME: ${{ steps.drafter.outputs.name }}
+          RELEASE_TAG_NAME: ${{ steps.drafter.outputs.tag_name }}
+          RELEASE_BODY: ${{ steps.drafter.outputs.body }}
+          RELEASE_HTML_URL: ${{ steps.drafter.outputs.html_url }}
+          RELEASE_UPLOAD_URL: ${{ steps.drafter.outputs.upload_url }}
+
