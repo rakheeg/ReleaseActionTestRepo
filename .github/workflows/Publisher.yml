@@ -12,13 +12,14 @@ jobs:
     name: Publisher
     runs-on: ubuntu-latest
     steps:
-      - name: Prepare Notes
+      - name: drafter
         id: drafter
         uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          commitish: main
+          commitish:
+            main
 
       - name: Checkout
         uses: actions/checkout@v3
