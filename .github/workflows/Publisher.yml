@@ -30,8 +30,8 @@ jobs:
           GITHUB_TOKEN:
             ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{steps.drafter.outputs.id}}
-          release_name: Release ${{steps.drafter.outputs.id}}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: ${{steps.drafter.outputs.body}}
           draft: false
           prerelease: false
