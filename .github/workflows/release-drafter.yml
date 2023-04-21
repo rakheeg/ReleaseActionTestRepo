@@ -33,6 +33,7 @@ jobs:
 
       # Drafts your next Release notes as Pull Requests are merged into "master"
       - name: drafter
+        id: drafter
         uses: release-drafter/release-drafter@v5
    
         # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
