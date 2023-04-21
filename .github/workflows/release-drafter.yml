@@ -47,13 +47,16 @@ jobs:
         with: 
           commitish: main
 
+
+
       - name: saveOutput
         run: |
+          mkdir -p output/release
           echo "${{ steps.drafter.outputs.id }}"
           echo "RELEASE_ID=${{ steps.drafter.outputs.id }}" >> $GITHUB_ENV
           echo "repository variable : ${{ vars.RELEASE_ID }}"
           echo "environment default variable : ${{ vars.RELEASE_ID }}"
-          echo "${{ steps.drafter.outputs.body }}" > ${{ github.workspace }}-ReleaseNotes.txt
+          echo "${{ steps.drafter.outputs.body }}" > output/release/ReleaseNotes.txt
 
         env:
           RELEASE_ID: ${{ steps.drafter.outputs.id }}
@@ -62,6 +65,12 @@ jobs:
           RELEASE_BODY: ${{ steps.drafter.outputs.body }}
           RELEASE_HTML_URL: ${{ steps.drafter.outputs.html_url }}
           RELEASE_UPLOAD_URL: ${{ steps.drafter.outputs.upload_url }}
+
+      - name: upload outputs
+        uses: actions/upload-artifact@v3
+          with:
+            name: release-notes
+            path: output/release/ReleaseNotes.txt
 
           # echo "${{ steps.drafter.outputs.name }}"
           # echo "${{ steps.drafter.outputs.tag_name }}"
