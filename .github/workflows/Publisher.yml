@@ -40,6 +40,6 @@ jobs:
         uses: irongut/EditRelease@v1.2.0
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
-          id: ${{ steps.drafter.outputs.body }}
+          id: ${{ steps.drafter.outputs.id }}
           name: Release ${{ github.ref }}
           draft: false
