@@ -22,7 +22,7 @@ jobs:
         id: latestVersion
         with:
           files: ReleaseNotes.txt
-          body: temp_var
+          body_path: ${{ github.workspace }}-ReleaseNotes.txt
 
       - name: set outputs
         run: |
