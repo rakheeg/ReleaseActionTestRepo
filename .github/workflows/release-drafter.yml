@@ -68,9 +68,9 @@ jobs:
 
       - name: upload outputs
         uses: actions/upload-artifact@v3
-          with:
-            name: release-notes
-            path: output/release/ReleaseNotes.txt
+        with:
+          name: release-notes
+          path: output/release/ReleaseNotes.txt
 
           # echo "${{ steps.drafter.outputs.name }}"
           # echo "${{ steps.drafter.outputs.tag_name }}"
