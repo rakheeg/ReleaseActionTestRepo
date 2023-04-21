@@ -47,10 +47,9 @@ jobs:
       - name: saveOutput
         run: |
           echo "${{ steps.drafter.outputs.id }}"
-          echo "${{ steps.drafter.outputs.name }}"
-          echo "${{ steps.drafter.outputs.tag_name }}"
-          echo "${{ steps.drafter.outputs.body }}"
           echo "RELEASE_ID=${{ steps.drafter.outputs.id }}" >> $GITHUB_ENV
+          echo "repository variable : ${{ vars.RELEASE_ID }}"
+          echo "environment default variable : ${{ vars.RELEASE_ID }}"
           
         env:
           RELEASE_ID: ${{ steps.drafter.outputs.id }}
@@ -59,4 +58,8 @@ jobs:
           RELEASE_BODY: ${{ steps.drafter.outputs.body }}
           RELEASE_HTML_URL: ${{ steps.drafter.outputs.html_url }}
           RELEASE_UPLOAD_URL: ${{ steps.drafter.outputs.upload_url }}
+
+          # echo "${{ steps.drafter.outputs.name }}"
+          # echo "${{ steps.drafter.outputs.tag_name }}"
+          # echo "${{ steps.drafter.outputs.body }}"
 

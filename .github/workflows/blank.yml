@@ -34,3 +34,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: test a env var
+        run: |
+          echo "repository variable : ${{ vars.RELEASE_ID }}"
