@@ -4,19 +4,25 @@ on:
   workflow_dispatch:
 
 env:
-  RELEASE_ID_LOCAL: ${{ vars.RELEASE_ID }}
+  temp_var: "body of the release"
 
 jobs:
   build:
     name: Publisher
     runs-on: ubuntu-latest
     steps:
-      - name: Get latest version
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Test
+        run: cat Release.txt > temp_var
+
+      - name: GH Release
+        uses: softprops/action-gh-release@v0.1.15
         id: latestVersion
-        uses: pozetroninc/github-action-get-latest-release@master
         with:
-          token: ${{ github.token }}
-          repository: ${{ github.repository }}
+          files: ReleaseNotes.txt
+          body: temp_var
 
       - name: set outputs
         run: |
