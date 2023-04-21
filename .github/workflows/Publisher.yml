@@ -2,10 +2,13 @@ name: Publish Release
   
 on:
   workflow_dispatch:
-  
+
+env:
+  RELEASE_ID_LOCAL: ${{ vars.RELEASE_ID }}
+
 jobs:
   build:
     name: Publisher
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ needs.ReleaseDrafter.outputs.upload_url }}
+      - run: echo $RELEASE_ID_LOCAL
