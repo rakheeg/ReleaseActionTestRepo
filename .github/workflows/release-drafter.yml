@@ -51,7 +51,7 @@ jobs:
           echo "RELEASE_ID=${{ steps.drafter.outputs.id }}" >> $GITHUB_ENV
           echo "repository variable : ${{ vars.RELEASE_ID }}"
           echo "environment default variable : ${{ vars.RELEASE_ID }}"
-          echo "${{ steps.drafter.outputs.body }}" > ${{ github.workspace }}-ReleaseNotes.md
+          echo "${{ steps.drafter.outputs.body }}" > ReleaseNotes.txt
 
         env:
           RELEASE_ID: ${{ steps.drafter.outputs.id }}
