@@ -1,26 +1,11 @@
 name: Publish Release
   
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
-  prepare-notes:
-    permissions:
-      contents: write
-      pull-requests: write
-    runs-on: ubuntu-latest
-    outputs:
-      RELEASE_ID: ${{ steps.drafter.outputs.id }}
-      RELEASE_BODY: ${{ steps.drafter.outputs.body }}
-    steps:
-      - name: drafter
-        id: drafter
-        uses: release-drafter/release-drafter@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          commitish: main
-
   publish:
     permissions:
       contents: write
@@ -28,12 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: prepare-notes
     steps:
+      - name: drafter
+          id: drafter
+          uses: release-drafter/release-drafter@v5
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            commitish:
+              main
+
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: GH Release
+      - name: Release
         uses: actions/create-release@v1
-        id: latestVersion
         env:
           GITHUB_TOKEN:
             ${{ secrets.GITHUB_TOKEN }}
@@ -44,12 +37,9 @@ jobs:
           draft: false
           prerelease: false
 
-  deleteDraft:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Delete drafts
-        uses: hugo19941994/delete-draft-releases@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          uses: hugo19941994/delete-draft-releases@v1.0.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
