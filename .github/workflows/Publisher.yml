@@ -11,4 +11,12 @@ jobs:
     name: Publisher
     runs-on: ubuntu-latest
     steps:
-      - run: echo $RELEASE_ID_LOCAL
+      - name: Get latest version
+        id: latestVersion
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ github.repository }}
+        run: |
+          echo "Latest rlease version ID is $steps.latestVersion.outputs.id"
+          echo "Latest rlease version TAG is $steps.latestVersion.outputs.release"
+          echo "Latest rlease version Body is $steps.latestVersion.outputs.description"
