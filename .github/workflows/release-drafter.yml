@@ -50,8 +50,6 @@ jobs:
           echo "${{ steps.drafter.outputs.name }}"
           echo "${{ steps.drafter.outputs.tag_name }}"
           echo "${{ steps.drafter.outputs.body }}"
-          echo "${{ steps.drafter.outputs.html_url }}"
-          echo "${{ steps.drafter.outputs.upload_url }}"
           echo "RELEASE_ID=${{ steps.drafter.outputs.id }}" >> $GITHUB_ENV
           
         env:
