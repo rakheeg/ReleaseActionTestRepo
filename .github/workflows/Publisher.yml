@@ -7,27 +7,45 @@ env:
   temp_var: "body of the release"
 
 jobs:
-  build:
+  update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    outputs:
+      RELEASE_ID: ${{ steps.drafter.outputs.id }}
+      RELEASE_BODY: ${{ steps.drafter.outputs.body }}
+    steps:
+      - name: drafter
+        id: drafter
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commitish: main
+
+  publish:
     name: Publisher
     runs-on: ubuntu-latest
+    needs: update_release_draft
     steps:
+      - env:
+        ID: ${{needs.update_release_draft.outputs.RELEASE_ID}}
+        BODY: ${{needs.update_release_draft.outputs.RELEASE_BODY}}
+
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Test
-        run: cat output/release/ReleaseNotes.txt > temp_var
-
       - name: GH Release
-        uses: softprops/action-gh-release@v0.1.15
+        uses: actions/create-release@v1
         id: latestVersion
+        env:
+          GITHUB_TOKEN:
+            ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ReleaseNotes.txt
-          body_path: output/release/ReleaseNotes.txt
-
-      - name: set outputs
-        run: |
-          echo "Latest rlease version ID is ${{ steps.latestVersion.outputs.id }}"
-          echo "Latest rlease version TAG is ${{ steps.latestVersion.outputs.tag_name }}"
-          echo "Latest rlease version Body is ${{ steps.latestVersion.outputs.body }}"
-          echo "is it draft: ${{ steps.latestVersion.outputs.draft }}"
+          tag_name: ID
+          release_name: Release ID
+          body: echo "$BODY"
+          draft: false
+          prerelease: false
 
