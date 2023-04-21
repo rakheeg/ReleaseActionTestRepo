@@ -29,10 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: update_release_draft
     steps:
-      - env:
-        ID: ${{needs.update_release_draft.outputs.RELEASE_ID}}
-        BODY: ${{needs.update_release_draft.outputs.RELEASE_BODY}}
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -43,9 +39,9 @@ jobs:
           GITHUB_TOKEN:
             ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ID
-          release_name: Release ID
-          body: echo "$BODY"
+          tag_name: ${{needs.update_release_draft.outputs.RELEASE_ID}}
+          release_name: Release ${{needs.update_release_draft.outputs.RELEASE_ID}}
+          body: echo "${{needs.update_release_draft.outputs.RELEASE_BODY}}"
           draft: false
           prerelease: false
 
