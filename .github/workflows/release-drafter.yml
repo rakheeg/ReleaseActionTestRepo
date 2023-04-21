@@ -43,14 +43,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with: 
-          commitish: main 
+          commitish: main
+
       - name: saveOutput
         run: |
           echo "${{ steps.drafter.outputs.id }}"
           echo "RELEASE_ID=${{ steps.drafter.outputs.id }}" >> $GITHUB_ENV
           echo "repository variable : ${{ vars.RELEASE_ID }}"
           echo "environment default variable : ${{ vars.RELEASE_ID }}"
-          
+          echo "${{ steps.drafter.outputs.body }}" > ${{ github.workspace }}-ReleaseNotes.md
+
         env:
           RELEASE_ID: ${{ steps.drafter.outputs.id }}
           RELEASE_NAME: ${{ steps.drafter.outputs.name }}
