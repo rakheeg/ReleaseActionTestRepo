@@ -15,7 +15,7 @@ jobs:
         id: latestVersion
         uses: pozetroninc/github-action-get-latest-release@master
         with:
-          github_token: ${{ github.token }}
+          token: ${{ github.token }}
           repository: ${{ github.repository }}
 
       - name: set outputs
