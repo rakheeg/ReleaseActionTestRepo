@@ -13,6 +13,8 @@ on:
   # pull_request_target:
   #   types: [opened, reopened, synchronize]
 
+  workkflow_dispatch:
+
 permissions:
   contents: read
 
