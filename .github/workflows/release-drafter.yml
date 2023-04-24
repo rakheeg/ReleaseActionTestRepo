@@ -39,7 +39,7 @@ jobs:
         with:
           tag: ${{ github.ref }}
           publish: true
-          commitish: main
+#          commitish: main
 
 
 
