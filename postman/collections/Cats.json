@@ -46,6 +46,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Latest cats",
+			"id": "fbbccf4d-1021-4889-8f34-3fb0b39176a6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thecatapi.com/v1/images/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thecatapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"images",
+						""
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
