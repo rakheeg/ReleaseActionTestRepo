@@ -46,6 +46,21 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Random Cat Image Copy 2",
+			"id": "26e767ff-ba2b-4251-ad2d-7978d68f4f11",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
 	]
 }
