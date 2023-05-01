@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "dd8e9ec6-5be6-4299-8a43-6a1191252ab9",
+		"name": "Cats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "20417221-dd8e9ec6-5be6-4299-8a43-6a1191252ab9"
+	},
+	"item": [
+		{
+			"name": "Get Random Cat Image",
+			"id": "8ae643e7-ec62-4abe-8252-905c431321bb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.thecatapi.com/v1/images/search",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thecatapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"images",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Random Cat Image Copy",
+			"id": "3d72cf04-5754-4998-bca7-3e87d9776d86",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
