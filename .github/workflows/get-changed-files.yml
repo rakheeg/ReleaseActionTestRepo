@@ -21,6 +21,7 @@ jobs:
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            if (file -match '*test*')
+            if [[ $file == *test* ]]; then 
               echo "$file TEST file was changed"
+            fi
           done
