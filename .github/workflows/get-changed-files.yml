@@ -22,7 +22,8 @@ jobs:
             test:
               - test/**
       - name: Run step if test file(s) change
-        if: steps.changed-files-yaml.outputs.test_any_changed == 'true'
+        if: steps.changed-files-yaml.outputs.test_any_changed == 'true'  
         run: |
           echo "One or more test file(s) has changed."
           echo "List all the files that have changed: ${{ steps.changed-files-yaml.outputs.test_all_changed_files }}"
+
