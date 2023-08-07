@@ -17,25 +17,10 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v37
-        with:
-          files_yaml: |
-            doc:
-              - '**/*.md'
-              - docs/**
-              - README.md
-            test:
-              - test/**
-              - '!test/**.md'
 
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+            if: contains(file, 'test.kt')
+              echo "$file TEST file was changed"
           done
-
-      - name: Run step if test file(s) change
-        # NOTE: The key has to start with the same key used above e.g. `test_(...)` | `doc_(...)` | `src_(...)` when trying to access the `any_changed` output.
-        if: steps.changed-files-yaml.outputs.test_any_changed == 'true'
-        run: |
-            echo "One or more test file(s) has changed."
-            echo "List all the files that have changed: ${{ steps.changed-files-yaml.outputs.test_all_changed_files }}"
