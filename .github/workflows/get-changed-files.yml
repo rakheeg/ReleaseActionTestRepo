@@ -20,7 +20,7 @@ jobs:
         with:
           files_yaml: |
             test:
-              - test/**
+              - **/test/**
       - name: Run step if test file(s) change
         if: steps.changed-files-yaml.outputs.test_any_changed == 'true'  
         run: |
