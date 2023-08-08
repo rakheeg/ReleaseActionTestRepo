@@ -19,7 +19,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: get diffs
-        run: git diff --name-only -r HEAD^1 HEAD | grep -c '/test/' $1
-        #| grep -c '/test/' $1
-        #git diff --name-only -r HEAD^1 HEAD | grep -c '/test/' $1
+      - name: get diff count
+        id: diffCount
+        run: |
+          if [ "$(git diff --name-only -r HEAD^1 HEAD | grep -c '/test/' $1)" -eq 0 ]; then
+            echo "NO tests added/ modified"
+          fi
+
