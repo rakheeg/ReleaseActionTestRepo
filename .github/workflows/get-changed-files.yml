@@ -33,6 +33,7 @@ jobs:
 
       - name: add comment to PR
         uses: mshick/add-pr-comment@v2
+        if: $COUNT_DIFF == 0
         with:
           message: |
             bugs can invade add tests
