@@ -20,5 +20,6 @@ jobs:
           fetch-depth: 2
 
       - name: get diffs
-        run: git diff --name-only -r main origin/${GITHUB_HEAD_REF}
+        run: git diff --name-only -r HEAD^1 origin/${GITHUB_HEAD_REF}
         #| grep -c '/test/' $1
+        #git diff --name-only -r HEAD^1 HEAD | grep -c '/test/' $1
