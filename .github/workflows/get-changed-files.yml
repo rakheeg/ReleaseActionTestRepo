@@ -24,13 +24,19 @@ jobs:
       - name: get diff count
         id: diffCount
         run: |
+          export COUNT=$(git diff --name-only -r HEAD^1 HEAD | grep -c '/test/' $1)
           if [ "$(git diff --name-only -r HEAD^1 HEAD | grep -c '/test/' $1)" -eq 0 ]; then
             echo "NO tests added/ modified"
           fi
+          echo COUNT
+          echo "::set-env name=COUNT-DIFF::$COUNT"
 
       - name: add comment to PR
         uses: mshick/add-pr-comment@v2
         with:
           message: |
             bugs can invade add tests
+
+      - name: use ENV VAR
+        run: echo $COUNT-DIFF
 
