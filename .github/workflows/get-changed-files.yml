@@ -36,7 +36,7 @@ jobs:
         if: env.COUNT_DIFF == 0
         with:
           message: |
-            bugs can invade add tests
+            bugs can invade add tests :wave:
 
       - name: use ENV VAR
         run: echo $COUNT_DIFF
