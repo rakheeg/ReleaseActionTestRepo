@@ -29,7 +29,7 @@ jobs:
           fi
 
       - name: add comment to PR
-        uses: mshick/add-pr-commet@v2
+        uses: mshick/add-pr-comment@v2
         with:
           message: |
             bugs can invade add tests
