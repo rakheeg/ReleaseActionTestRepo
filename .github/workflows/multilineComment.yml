@@ -25,9 +25,9 @@ jobs:
             
             Cheers!
             `;
-            const { context, github } = require('@actions/github');
+            const { ctx, github } = require('@actions/github');
             github.issues.createComment({
-              ...context.repo,
-              issue_number: context.issue.number,
+              ...ctx.repo,
+              issue_number: ctx.issue.number,
               body: comment
             });
