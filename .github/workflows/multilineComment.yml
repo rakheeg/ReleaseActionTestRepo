@@ -1,0 +1,33 @@
+name: Add Multiline PR Comment
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  add_comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Add PR Comment
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = `
+            Hello there,
+            
+            This is a multiline comment
+            that spans multiple lines.
+            
+            Cheers!
+            `;
+            const { context, github } = require('@actions/github');
+            github.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
