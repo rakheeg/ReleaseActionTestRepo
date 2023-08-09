@@ -12,22 +12,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Add PR Comment
-        uses: actions/github-script@v5
+      - name: set result
+        uses: actions/github-script@v6
+        id: set-result
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const comment = `
-            Hello there,
-            
-            This is a multiline comment
-            that spans multiple lines.
-            
-            Cheers!
-            `;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+          script: return "Hello!"
+          result-encoding: string
+
+      - name: Get result
+        run: echo "${{steps.set-result.outputs.result}}"
+
+
+#      - name: Add PR Comment
+#        uses: actions/github-script@v5
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          script: |
+#            const comment = `
+#            Hello there,
+#
+#            This is a multiline comment
+#            that spans multiple lines.
+#
+#            Cheers!
+#            `;
+#            github.rest.issues.createComment({
+#              issue_number: context.issue.number,
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              body: comment
+#            });
