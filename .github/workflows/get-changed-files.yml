@@ -37,6 +37,7 @@ jobs:
         with:
           message: |
             :warning: No Test files updated or added. Please add tests.
+             files changed - ${{ env.COUNT_DIFF }}
               If you need to add a new ticket https://jira.grubhub.com/secure/Dashboard.jspa
 
       - name: use ENV VAR
