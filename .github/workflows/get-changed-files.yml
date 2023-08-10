@@ -24,7 +24,7 @@ jobs:
       - name: get diff count
         id: diffCount
         run: |
-          export COUNT=$(git diff --name-only -r HEAD^1 HEAD | grep -ic 'test*.kt' $1)
+          export COUNT=$(git diff --name-only -r HEAD^1 HEAD | grep -ic 'test[s]*\.kt' $1)
           if [ $COUNT -eq 0 ]; then
             echo "NO tests added/ modified"
           fi
