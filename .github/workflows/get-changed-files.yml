@@ -59,6 +59,7 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
+        if: env.COUNT_DIFF == 0
         run: |
           curl \
             -X POST \
