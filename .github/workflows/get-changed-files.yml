@@ -36,7 +36,8 @@ jobs:
         if: env.COUNT_DIFF == 0
         with:
           message: |
-            :warning: bugs can invade add tests
+            :warning: No Test files updated or added. Please add tests.
+            If you need to add a new ticket https://jira.grubhub.com/secure/Dashboard.jspa
 
       - name: use ENV VAR
         run: echo $COUNT_DIFF
