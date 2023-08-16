@@ -11,4 +11,4 @@ jobs:
         run: |
           export count=$(echo "${{ github.event.pull_request.title }}" | grep -Eic "^\[?(dren|drop|dcor)-[0-9]+\]?")
           echo "dren occured count $count"
-          if $count -eq 0 then echo "no match found" else echo "match found"
+          if [$count -eq 0]; then echo "no match found" else echo "match found" fi
