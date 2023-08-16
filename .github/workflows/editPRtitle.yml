@@ -10,5 +10,6 @@ jobs:
       - name : Print Title of PR
         run: |
           echo "The Title of your PR is ${{ github.event.pull_request.title }}"
-          export count=$(echo "${{ github.event.pull_request.title }}" | grep -ci dren)
+          export count=$(echo "${{ github.event.pull_request.title }}" | grep -Eic "^\[?(dren|drop|dcor)-[0-9]+\]?")
           echo "dren occured count $count"
+          if [[ $count -eq 0 ]]; then echo "no match found" else "match found" fi
