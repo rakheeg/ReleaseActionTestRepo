@@ -3,7 +3,8 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-  jobs:
+jobs:
+  echoss:
     runs-on: ubuntu-20.04
     steps:
       - name : Print Title of PR
