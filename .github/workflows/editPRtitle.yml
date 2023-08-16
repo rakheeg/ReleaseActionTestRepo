@@ -10,4 +10,4 @@ jobs:
       - name : Print Title of PR
         run: |
           echo "The Title of your PR is ${{ github.event.pull_request.title }}"
-          echo "grep -ci "dren" ${{ github.event.pull_request.title }}"
+          echo grep -ci "dren" ${{ github.event.pull_request.title }}
