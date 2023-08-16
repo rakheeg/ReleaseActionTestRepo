@@ -16,4 +16,10 @@ jobs:
             echo "matching - $matchString"
           else 
             echo "match found" 
-          fi
+          fi  
+          curl -L \
+            -X PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/OWNER/REPO/pulls/PULL_NUMBER \
+            -d '{"title":"$matchString ${{ github.event.pull_request.title }}"}'
