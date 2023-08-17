@@ -5,6 +5,11 @@ on:
 
 jobs:
   echoss:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # otherwise, read permission is required at least
+      pull-requests: write
     runs-on: ubuntu-20.04
     steps:
       - name : Print Title of PR
