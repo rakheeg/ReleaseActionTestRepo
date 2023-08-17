@@ -8,7 +8,7 @@ jobs:
     permissions:
       # write permission is required to create a github release
       # contents: writeddd
-      # otherwise, read permission is required at least
+      # otherwise, read permission is required at leastdd
       pull-requests: write
     runs-on: ubuntu-20.04
     steps:
