@@ -20,6 +20,7 @@ jobs:
           if [ $count -eq 0 ]; then 
             export ticketNumber=$(echo $BODY | grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]?" | head -1)
             if [ -n $ticketNumber ]; then
+              echo "ticket number found"
               curl -L \
                 -X PATCH \
                 -H "Accept: application/vnd.github+json" \
@@ -28,10 +29,11 @@ jobs:
                 https://api.github.com/repos/$REPO/pulls/$PR_NUMBER\
                 -d '{"title":"'$ticketNumber' ${{ github.event.pull_request.title }}"}'
             else
+              echo "no ticket number found"
               curl \
                 -X POST \
                 -H "Accept: application/vnd.github.v3+json" \
-                -H "Authorization: token $TOKEN" \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
                 https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
                 -d '{"body":":warning: Please add a ticket number to the PR"}'
             fi

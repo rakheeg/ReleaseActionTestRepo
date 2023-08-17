@@ -53,7 +53,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-            -d '{"body":"# Job Summary\nChanged Files '$COUNT_DIFF'\n:warning: Please Add tests\n"}'
+            -d '{"body":"curl1 # Job Summary\nChanged Files '$COUNT_DIFF'\n:warning: Please Add tests\n"}'
 
       - name: Add comment to PR
         env:
@@ -66,4 +66,4 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-            -d '{"body":":warning: No Test files updated or added. Please add tests.\nIf you need to add a new ticket https://jira.grubhub.com/secure/Dashboard.jspa"}'
+            -d '{"body":"curl2 :warning: No Test files updated or added. Please add tests.\nIf you need to add a new ticket https://jira.grubhub.com/secure/Dashboard.jspa"}'
