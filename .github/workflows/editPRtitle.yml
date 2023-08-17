@@ -13,11 +13,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name : Print Title of PR
+        env:
+          PR_BODY : ${{ github.event.pull_request.body }}
         run: |
           export count=$(echo "${{ github.event.pull_request.title }}" | grep -Eic "^\[?(dren|drop|dcor)-[0-9]+\]?")
           echo "dren occured count $count"
           if [ $count -eq 0 ]; then 
-            export matchString=$(grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]?" "${{ github.event.pull_request.body }}" | head -1)
+            export matchString=$(grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]?" $PR_BODY | head -1)
             echo "matching - $matchString"
           else 
             echo "match found" 
