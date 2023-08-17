@@ -17,7 +17,7 @@ jobs:
           export count=$(echo "${{ github.event.pull_request.title }}" | grep -Eic "^\[?(dren|drop|dcor)-[0-9]+\]?")
           echo "dren occured count $count"
           if [ $count -eq 0 ]; then 
-            export matchString=$(echo "${{ github.event.pull_request.body }}" | grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]?" | head -1)
+            export matchString=$(echo "${{ github.event.pull_request.body }}" | grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]? $1" | head -1)
             echo "matching - $matchString"
           else 
             echo "match found" 
