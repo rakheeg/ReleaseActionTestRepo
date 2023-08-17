@@ -20,7 +20,7 @@ jobs:
           if [ $count -eq 0 ]; then 
             export ticketNumber=$(echo $BODY | grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]?" | head -1)
             if [ -n $ticketNumber ]; then
-              echo "ticket number found - $ticketNumber"
+              echo "ticket number found - $ticketNumber, length - ${#str}"
               curl -L \
                 -X PATCH \
                 -H "Accept: application/vnd.github+json" \
