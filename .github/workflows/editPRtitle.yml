@@ -34,3 +34,4 @@ jobs:
                 -H "Authorization: token $TOKEN" \
                 https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
                 -d '{"body":":warning: Please add a ticket number to the PR"}'
+            fi
