@@ -19,7 +19,15 @@ jobs:
           export count=$(echo $TITLE | grep -Eic "^\[?(dren|drop|dcor)-[0-9]+\]?")
           if [ $count -eq 0 ]; then 
             export ticketNumber=$(echo $BODY | grep -Eoi -m 1 "\[?(dren|drop|dcor)-[0-9]+\]?" | head -1)
-            if [ -n $ticketNumber ]; then
+            if [ ${#ticketNumber} -eq 0 ]; then
+              echo "no ticket number found"
+              curl \
+                -X POST \
+                -H "Accept: application/vnd.github.v3+json" \
+                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
+                -d '{"body":":warning: Please add a ticket number to the PR"}'
+            else
               echo "ticket number found - $ticketNumber, length - ${#ticketNumber}"
               curl -L \
                 -X PATCH \
@@ -28,13 +36,5 @@ jobs:
                 -H "X-GitHub-Api-Version: 2022-11-28" \
                 https://api.github.com/repos/$REPO/pulls/$PR_NUMBER\
                 -d '{"title":"'$ticketNumber' ${{ github.event.pull_request.title }}"}'
-            else
-              echo "no ticket number found"
-              curl \
-                -X POST \
-                -H "Accept: application/vnd.github.v3+json" \
-                -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments \
-                -d '{"body":":warning: Please add a ticket number to the PR"}'
-            fi
+              fi
           fi
