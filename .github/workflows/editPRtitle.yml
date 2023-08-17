@@ -5,12 +5,6 @@ on:
 jobs:
   update-title:
     permissions:
-<<<<<<< Updated upstream
-      # write permission is required to create a github release
-      # contents: writeddd
-      # otherwise, read permission is required at least
-=======
->>>>>>> Stashed changes
       pull-requests: write
     runs-on: ubuntu-20.04
     steps:
